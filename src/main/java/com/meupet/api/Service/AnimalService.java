@@ -32,17 +32,24 @@ public class AnimalService {
                 .toList();
     }
 
-    public AnimalDTO findById(@Positive Long id){return mapper.convertToDto(repository.findById(id).orElseThrow(()->new RuntimeException("objeto nao encontrado")));}
+    public AnimalDTO findById(@Positive Long id) {
+        Animal animal = repository.findById(id).orElseThrow(() -> new RuntimeException("objeto nao encontrado"));
+        return mapper.convertToDto(animal);
+    }
 
-    public AnimalDTO create(@Valid AnimalDTO dto){return mapper.convertToDto(repository.save(mapper.convertToEntity(dto))); }
+    public AnimalDTO create(@Valid AnimalDTO dto) {
+        return mapper.convertToDto(repository.save(mapper.convertToEntity(dto)));
+    }
 
-    public AnimalDTO update(@Positive Long id, @Valid AnimalDTO dto){
+    public AnimalDTO update(@Positive Long id, @Valid AnimalDTO dto) {
         return repository.findById(id)
                 .map(registroEncontrado -> {
                     BeanUtils.copyProperties(dto, registroEncontrado);
                     return mapper.convertToDto(repository.save(registroEncontrado));
-                }).orElseThrow(() -> new RuntimeException("nao encontrado"));
+                }).orElseThrow(() -> new RuntimeException("objeto nao encontrado"));
     }
 
-    public void delete(@Positive Long id){repository.delete(repository.findById(id).orElseThrow(() -> new RuntimeException("nao encontrado")));}
+    public void delete(@Positive Long id) {
+        repository.delete(repository.findById(id).orElseThrow(() -> new RuntimeException("objeto nao encontrado")));
+    }
 }

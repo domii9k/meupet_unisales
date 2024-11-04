@@ -8,7 +8,7 @@ Este README aborda algumas instruções para a execução do código da API MeuP
 1) O projeto está configurado para rodar localmente.
 2) Ainda não há front-end integrado ao projeto, mas ele pode ser utilizado via ferramentas de requisição como Insomnia ou Postman.
 3) O sistema de autenticação (login e registro de usuários) está incluído e funcional.
-4) Novas funcionalidades e melhorias estão planejadas para serem implementadas ao longo do semestre.
+4) **Novas funcionalidades e melhorias estão planejadas para serem implementadas ao longo do semestre.**
 
 ## 🛠 Ferramentas recomendadas
 
