@@ -109,3 +109,10 @@ Para acesso administrador, o login e senha padrão é:
 ```
 
 Este usuário ADM é um usuário teste para caso queira realizar requisições de registros de usuários ou requisições avançadas.
+
+### ✔️ Testes
+
+Adicionado as classes testes das Services do sistema (NOV/2024). Ferramentas utilizadas:
+
+- **JUnit5** 
+- **Mockito**
