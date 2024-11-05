@@ -38,7 +38,7 @@ Para buscar dados já cadastrados no sistema, faça uma requisição GET para os
 > - https://localhost:8080/proprietarios
 > - https://localhost:8080/historico-peso-altura
 > - https://localhost:8080/vacinacoes
-> - https://localhost:8080/usuario
+> - https://localhost:8080/usuarios
 >
 > Para detalhes de um item específico, adicione o ID ao final da URL. Exemplo: https://localhost:8080/animais/1
 
@@ -116,3 +116,33 @@ Adicionado as classes testes das Services do sistema (NOV/2024). Ferramentas uti
 
 - **JUnit5** 
 - **Mockito**
+
+## Permissões de Endpoints por Tipo de Usuário
+
+| Tipo de Usuário | Método | Endpoints                                                                                         | Descrição                          |
+|-----------------|--------|--------------------------------------------------------------------------------------------------|------------------------------------|
+| **Público**     | POST   | `/auth/login`, `/auth/registro`                                                                  | Acesso para login e registro       |
+| **Secretário**  | GET    | `/animais`, `/usuarios`, `/proprietarios`, `/historico-peso-altura`                              | Listar dados de animais, usuários, proprietários e histórico |
+|                 | GET    | `/animais/{id}`, `/usuarios/{id}`, `/proprietarios/{id}`, `/historico-peso-altura/{id}`          | Consultar detalhes específicos de animais, usuários, proprietários e histórico |
+|                 | POST   | `/animais/novo-animal`, `/proprietarios/novo-proprietario`                                       | Cadastrar novos animais e proprietários |
+|                 | PUT    | `/usuarios/{id}`, `/animais/{id}`, `/proprietarios/{id}`                                         | Atualizar dados de animais, usuários e proprietários |
+|                 | DELETE | `/animais/{id}`, `/usuarios/{id}`, `/proprietarios/{id}`                                         | Excluir dados de animais, usuários e proprietários |
+| **Veterinário** | GET    | `/animais`, `/usuarios`, `/proprietarios`, `/historico-peso-altura`                              | Listar dados de animais, usuários, proprietários e histórico |
+|                 | GET    | `/animais/{id}`, `/usuarios/{id}`, `/proprietarios/{id}`, `/historico-peso-altura/{id}`          | Consultar detalhes específicos de animais, usuários, proprietários e histórico |
+|                 | GET    | `/vacinacoes`, `/vacinas`                                                                        | Listar vacinas e vacinações       |
+|                 | GET    | `/vacinacoes/{id}`, `/vacinas/{id}`                                                              | Consultar detalhes específicos de vacinações e vacinas |
+|                 | POST   | `/animais/novo-animal`, `/proprietarios/novo-proprietario`                                       | Cadastrar novos animais e proprietários |
+|                 | POST   | `/vacinas/nova-vacina`, `/historico-peso-altura/novo-historico`, `/vacinacoes/nova-vacinacao`    | Registrar novas vacinas, histórico e vacinações |
+|                 | PUT    | `/usuarios/{id}`, `/animais/{id}`, `/proprietarios/{id}`                                         | Atualizar dados de animais, usuários e proprietários |
+|                 | PUT    | `/vacinacoes/{id}`, `/vacinas/{id}`                                                              | Atualizar dados de vacinações e vacinas |
+|                 | DELETE | `/animais/{id}`, `/usuarios/{id}`, `/proprietarios/{id}`                                         | Excluir dados de animais, usuários e proprietários |
+|                 | DELETE | `/vacinacoes/{id}`, `/vacinas/{id}`, `/historico-peso-altura/{id}`                               | Excluir dados de vacinações, vacinas e histórico |
+
+### Observação
+- **Administrador**: possui acesso completo a todos os endpoints e métodos sem restrições.
+
+#### Tipo de usuários (ENUM):
+
+- ADMIN
+- VETERINARIO
+- SECRETARIO
